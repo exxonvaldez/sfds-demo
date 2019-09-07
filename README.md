@@ -26,12 +26,16 @@ OpenTransit recently shifted from using class components to functional component
 
 ## Code Structure
 
+This is a standard Create React App.  Code specific to this project is under `src` as follows:  
+ 
 Under `components`:
 
 - `ProjectScreen` Main page with html
 - `ProjectMap` react-leaflet map
 - `ProjectTable` Material UI table
 - `ProjectTimelineChart` react-vis chart
+- basic test files are alongside each component 
+
 
 Under `reducers`:
 
@@ -40,7 +44,7 @@ Under `reducers`:
 At the root level:
 
 - `actions.js` The action creators (one to fetch data and one to update selections)
-- `App.js` A Material UI themed wrapper around `ProjectScreen`
+- `App.js` A Material UI themed wrapper around `ProjectScreen` (plus test)
 - `index.js` Sets up a redux-thunk store and renders `App`
 - `index.css` All the css, mostly borrowed from sf.gov
 
