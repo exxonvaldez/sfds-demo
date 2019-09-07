@@ -1,5 +1,85 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
+This is a simple web app that displays data about affordable rental housing in San Francisco.
+
+The housing data comes from [DataSF](https://data.sfgov.org/Housing-and-Buildings/Mayor-s-Office-of-Housing-and-Community-Developmen/9rdx-httc) and is accessed via the SODA API at https://data.sfgov.org/resource/9rdx-httc.json .
+
+The app is a single page with the following features:
+
+- Shows a table to displays some columns of the data.
+- Allows sorting by any of the visible columns.
+- Displays a map with (approximate) locations of the properties.  Latitude is given to only two decimal places (about 0.7 mile increments), so plotted locations are offset north or south slightly based on row number to spread the markers apart.
+- Allows toggling selection of invidual properties via the map or table, and seeing that same selection in both the map and table.
+- When properties are selected, the table allows filtering to show only selected rows. 
+- Shows a chart of the number of affordable units and beds by year affordability began.
+- Has styling and layout that resembles an information page from https://sf.gov , including some support for smaller screen and window sizes and older browsers such as Internet Explorer 9 and above.
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  The standard Create React App instructions are at the bottom of this document, and remain fully applicable.
+
+This app is heavily based on code from [OpenTransit](https://codeforsanfrancisco.org/projects/opentransit/), an open source web app developed by community volunteers, including myself, for visualizing historical movement data of Muni trains and buses.  OpenTransit has a React front end that displays data in the form of tables, maps, and charts.  Both apps use Material UI for layout and tables, React-Leaflet for maps, react-vis for charts, and Redux/redux-thunk as a shared store for state.  
+
+OpenTransit recently shifted from using class components to functional components that use hooks, but some of the components (in particular, the maps) are still class based.  OpenTransit has no automated tests yet.
+
+## Demo Animation
+
+![Demo gif](/demo.gif?raw=true "Demo")
+
+## Code Structure
+
+Under `components`:
+
+- `ProjectScreen` Main page with html
+- `ProjectMap` react-leaflet map
+- `ProjectTable` Material UI table
+- `ProjectTimelineChart` react-vis chart
+
+Under `reducers`:
+
+- `index.js` The one reducer
+
+At the root level:
+
+- `actions.js` The action creators
+- `App.js` A themed wrapper around `ProjectScreen`
+- `index.js` Sets up a redux-thunk store and renders `App`
+- `index.css` All the css, mostly borrowed from sf.gov
+
+
+## Developer Discussion
+
+Creating this app took much more time than I expected and more time than was specified.  It was a fun app to work on, and gave me a chance to learn a lot of things, so it felt like time well spent.   Time intensive aspects of this app included:
+
+After bootstrapping a new React app, choosing which packages to carry over, then porting over the core parts of the OpenTransit app, for example, with routing removed.  And fixing new lint errors that appeared, as OpenTransit is on React 16.8 and this app is on 16.9.  For example, any use of componentWillMount generates a new warning.
+
+Adapting OpenTransit components (stripping away some features, then some more, and then some more).
+
+Resolving differences between Create React App styles and sf.gov, so that text looks the same on both.  In particular the CRA
+body has these attributes, which seems to affect the font weights for the Rubik font are rendered:
+  `-webkit-font-smoothing: antialiased;`
+  `-moz-osx-font-smoothing: grayscale;`
+  
+Understanding the css, design, and color schemes for the sf.gov home page and department page well enough to realize that these templates are not a flexible enough design to use for this app.  Then looking for and switching to a more suitable type of page, in this case, an information page.
+
+Picking just the needed css rules (so many!) and html from sf.gov to create an alpha banner, a hero banner, and some subheadings and paragraphs.
+
+Recreating sf.gov's responsive container layout in React by using theming and custom breakpoints.
+
+Given the sf.gov color scheme, adapting the map, chart, and checkboxes to fit.  In particular, for the map it was hard to pick two colors that make sense together on a light background.  It was also hard find the best opacity for the marker fill and stroke where closely placed markers still looked distinct, and an isolated marker still had some contrast from the background.
+
+I did not set up a full Material UI theme, but at first was using the theme's primary color (blue) throughout and then
+customizing colors for the map.  In hindsight, a custom theme and palette whose colors were accessed by non-Material UI components would have been better.
+
+Setting up a VM from modern.ie to run IE 9/10 (selecting the IE 9 option for VMWare actually gets you a VM with IE 8, so had to redo with IE 10).  I then discovered that Axios dropped IE support in the last few versions, leading to false CORS errors, requiring a downgrade to 0.18.0.  Also had to re-discover that IE 10 comes with TLS 1.2 turned off by default.
+
+Some IE 10 issues:  project selection takes a while (7 seconds per click, that time is not showing up in the js profiler), and react-vis chart is missing bars (possibly solvable using core-js polyfills: https://github.com/uber/react-vis/issues/392).
+
+Iterating to decide on map mouseover and click behaviors, and to decide whether the table should support selection of rows or not.
+
+Learning how to test connected components, as this seems to be an ongoing issue as packages evolve.  The tests are extremely basic and do not include any snapshots.  
+
+Documentation and code clean up.
+
+ 
 ## Available Scripts
 
 In the project directory, you can run:
