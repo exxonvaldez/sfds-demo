@@ -4,7 +4,6 @@
 
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { createMuiTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import {
   FlexibleWidthXYPlot,
@@ -74,7 +73,6 @@ function ProjectTimelineChart(props) {
   }
 
   const { projects } = props;
-  const theme = createMuiTheme(); // using primary Material UI color for now, should be sfgov blue
   const series = createSeries(projects);
     
   return (
@@ -94,7 +92,7 @@ function ProjectTimelineChart(props) {
 
                   <VerticalBarSeries
                     data={ series }
-                    color={ theme.palette.primary.main }
+                    color="rgb(79, 102, 238)"
                     onNearestX={onNearestX}
                   />
 

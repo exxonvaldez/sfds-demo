@@ -1,12 +1,16 @@
 /*
- * All CSS is here.  body and code rules come from Create React App.
+ * All CSS is here.   Pretty much all from sf.gov.  
  */
 
 body {
   margin: 0;
   font-family: "Rubik", sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue";
-  -ms-text-size-adjust:100%;-webkit-text-size-adjust:100%
+  -ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #1c3e57;
 }
 
 /*
@@ -17,11 +21,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
 */
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
 
 /* fix for Material UI table sticky header where scrolled checkboxes show through the header */
 
@@ -35,6 +34,16 @@ code {
 
 
 /* HTML tag rules */
+
+html {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+*,*::before,*::after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
 
 p {
     margin-bottom: 1em;
@@ -321,8 +330,68 @@ body .sfgov-section__title {
 
 
 
+/* information page rules */
 
 
+.page-node-type-information-page .__information-section .sfgov-section h2 {
+    padding: 0;
+    margin-left: 0;
+    margin-bottom: 20px;
+    margin: 0 auto;
+    max-width: 1210px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 27px;
+}
+
+@media screen and (min-width: 1280px) {
+    .page-node-type-information-page .__information-section .sfgov-section h2 {
+        padding:0;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .page-node-type-information-page .__information-section .sfgov-section h2 {
+        font-size:30px;
+        font-weight: 500;
+        line-height: 42px;
+    }
+}
+
+.page-node-type-information-page .__information-section .sfgov-section .sfgov-section__content {
+    margin: 0 auto;
+    max-width: 1090px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+}
+
+.page-node-type-information-page .__information-section .sfgov-section .sfgov-section__content::after {
+    clear: both;
+    content: "";
+    display: block;
+}
+
+@media screen and (min-width: 1280px) {
+    .page-node-type-information-page .__information-section .sfgov-section .sfgov-section__content {
+        padding:0;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .page-node-type-information-page .__information-section .sfgov-section .sfgov-section__content .__text {
+        float:left;
+        max-width: 720px;
+        width: calc((100% - 20px)/3*2);
+    }
+}
+
+
+
+/* departments section rules */
 
 .page-node-type-information-page .info--departments-container {
     padding: 50px 0;
@@ -355,10 +424,3 @@ body .sfgov-section__title {
 }
 
 
-
-
-@media screen and (min-width: 950px) {
-    .transaction--left .sfgov-section__content {
-        margin-left:60px;
-    }
-}

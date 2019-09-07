@@ -58,7 +58,7 @@ body has these attributes, which seems to affect how font weights for the "Rubik
 - `-webkit-font-smoothing: antialiased;`
 - `-moz-osx-font-smoothing: grayscale;`
   
-Understanding the css, design, and color schemes for the sf.gov home page and department page well enough to realize that these templates are not a flexible enough design to reuse here.  Then looking for and switching to a more suitable type of page, in this case, an information page.
+Understanding the css, design, and color schemes for the sf.gov home page, department page well enough to realize that these templates are not a flexible enough design to reuse here.  Then looking for and switching to a more suitable type of page, in this case, an information page, after detouring through the transaction page.
 
 Picking just the needed css rules (so many!) and html structure from sf.gov to create an alpha banner, a hero banner, and some subheadings and paragraphs.
 
@@ -67,7 +67,7 @@ Recreating sf.gov's responsive container layout in React by using theming and cu
 Given the sf.gov color scheme, adapting the map, chart, and checkboxes to not clash.  In particular, for the map it was hard to pick two colors that make sense together on a light background.  It was also hard find the best opacity for the marker fill and stroke where closely placed markers still looked distinct, and an isolated marker still had some contrast from the background.
 
 I did not set up a full Material UI theme with colors.  I using the default theme's primary color (blue) throughout and then
-customized colors for the map.  In hindsight, a custom theme with colors and palette whose colors were accessed by non-Material UI components would have been better.
+customized colors for the map and chart.  In hindsight, a custom theme with colors and palette whose colors were accessed by non-Material UI components would have been better.
 
 Setting up a VM from modern.ie to run IE 9/10.  Selecting the IE 9 option for VMWare, despite the VM's name, resulted a VM with IE 8, so had to download IE 10.  I then discovered that Axios dropped IE support in the last few versions, leading to false CORS errors, requiring a downgrade to 0.18.0.  Also rediscovered that IE 10 comes with TLS 1.2 turned off by default.
 

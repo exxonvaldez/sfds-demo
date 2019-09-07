@@ -51,10 +51,12 @@ function ProjectScreen(props) {
           <h1>Affordable Rental Portfolio</h1>
           <h3 className="lead-paragraph">
             <div className="field field--type-text-long __description field__item">
+              <p>
               Affordable rental housing developed in partnership with non-profit and private developers and financed
               by the Mayor’s Office of Housing and Community Development (MOHCD) and the Office of Community Investment
               and Infrastructure (OCII) through City Funding Agreements, Ground Leases, Disposition & Participation
-              Agreements and Conduit Mortgage Revenue Bond Financing, as of December 31, 2018.      
+              Agreements and Conduit Mortgage Revenue Bond Financing, as of December 31, 2018.
+              </p>
             </div>
           </h3>
           </Container>
@@ -66,7 +68,7 @@ function ProjectScreen(props) {
               
       <Container maxWidth="lg">
 
-        <div className="transaction--left">
+        <div className="__information-section">
           <div className="sfgov-section">
             <h2 className="sfgov-section__title">Map of Affordable Rental Projects</h2>          
             <div className="sfgov-section__content">
@@ -79,7 +81,7 @@ function ProjectScreen(props) {
           </div>
         </div>
 
-        <div className="transaction--left">
+        <div className="__information-section">
           <div className="sfgov-section">
             <h2 className="sfgov-section__title">Table of Affordable Rental Projects</h2>
             <div className="sfgov-section__content">
@@ -92,9 +94,9 @@ function ProjectScreen(props) {
           </div>
         </div>
         
-        <div className="transaction--left">
+        <div className="__information-section">
           <div className="sfgov-section">
-            <h2 className="sfgov-section__title">Number of Affordable Units by Year</h2>          
+            <h2 className="sfgov-section__title">Number of Affordable Units and Beds by Year</h2>          
             <div className="sfgov-section__content">
         
               <ProjectTimelineChart/>
