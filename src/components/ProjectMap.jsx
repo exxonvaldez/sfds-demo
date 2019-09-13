@@ -15,26 +15,6 @@ class ProjectMap extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-        height: (window.innerHeight/2), // half the window height
-    };
-  }
-
-  /**
-   * Make the map half the height of the window.
-   */
-  updateDimensions() {
-    const height = (window.innerHeight/2); // half the window height
-    this.setState({ height: height });
-  }
-
-  componentDidMount() {
-    this.boundUpdate = this.updateDimensions.bind(this);
-    window.addEventListener("resize", this.boundUpdate);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateDimensions.bind(this))
   }
 
   /**
@@ -116,7 +96,7 @@ class ProjectMap extends Component {
    */
   render() {
 
-    const mapClass = { width: '100%', height: this.state.height };
+    const mapClass = { width: '100%', height: '50vh' };
     
     let projectMarkers = this.getProjectMarkers(this.props.selectedProjectIDs, this.props.setSelectedProjectIDs);
 
